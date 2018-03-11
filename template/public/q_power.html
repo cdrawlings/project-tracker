@@ -1,0 +1,111 @@
+
+<div class="col-md-9 col-md-offset-1">
+    <div class="title bold">PowerPoint job queue</div></div>
+
+
+
+<p>Projects need X days to complete. We will try to complete your job by your requested date, but not guaranteed. Jobs proirity is subject to change.</p>
+
+
+<div class="row">
+
+
+    <div class="col-md-8 col-md-offset-2">
+        <div class="line semibold subhead">
+            Pending jobs
+        </div>
+    </div>
+
+
+
+
+    <div class="col-md-8 col-md-offset-2">
+<ul ng-model="powerPending" class="queue-list">
+    <li ng-repeat="item in powerPending | orderBy : 'priority'">
+
+        <div class="eighty">
+            <div class="flt-left bold blue fifty">{{item.job}}</div>
+            <div class="flt-left"> {{item.due_date}}</div>
+            <button type="button" class="btn btn-default gray flt-right"
+                    data-toggle="modal" data-target="#dialogTestDialog{{$index}}" ng-click="Clear()">details
+            </button>
+
+
+
+ <!-- Modal window -->
+
+            <div class="modal modal-custom" id="dialogTestDialog{{$index}}" tabindex="-1" role="dialog"
+                 aria-labelledby="executionOptionLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog pop">
+                    <div class="modal-content modal-custom">
+                        <h4><span class="bold blue"> Job  title:</span> {{item.job}}</h4>
+                        <div class="modal-body">
+                            <p><span class="semibold blue">Job Submitter:</span> {{item.client}}</p>
+                               <p><span class="semibold blue">Submit date: </span> {{ item.submitted}}</p>
+                            <p><span class="semibold blue">Due date: </span> {{ item.due_date}}</p>
+                            <p><span class="semibold blue">Brief: </span> {{item.brief}}</p>
+                            <p><span class="semibold blue">Comment: </span> {{item.comment}}
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+    </li>
+</ul>
+
+
+
+     <div class="col-md-8 col-md-offset-2">
+        <div class="line">
+            <div class="semibold subhead">Active jobs</div>
+    </div>
+
+
+<ul ng-model="powerWorking" class="queue-list">
+    <li ng-repeat="item in powerWorking | orderBy : 'priority'">
+<div class="eighty">
+         <div class="flt-left bold blue fifty">{{item.job}}</div>
+            <div class="flt-left"> {{item.due_date}}</div>
+            <button type="button" class="btn btn-default gray flt-right"
+                    data-toggle="modal" data-target="#dialogTestDialog{{$index}}" ng-click="Clear()">details
+            </button>
+        </div>
+
+
+
+ <!-- Modal window -->
+
+            <div class="modal " id="dialogTestDialog{{$index}}" tabindex="-1" role="dialog"
+                 aria-labelledby="executionOptionLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog pop">
+                    <div class="modal-content">
+                        <p><span class="bold blue">Job  title:</span> {{item.job}}</p>
+                        <div class="modal-body">
+                            <p><span class="semibold blue">Job Submitter:</span> {{item.client}}</p>
+                               <p><span class="semibold blue">Submit date: </span> {{ item.submitted}}</p>
+                            <p><span class="semibold blue">Due date: </span> {{ item.due_date}}</p>
+                            <p><span class="semibold blue">Brief: </span> {{item.brief}}</p>
+                            <p><span class="semibold blue">Comment: </span> {{item.comment}}</a>
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+    </li>
+</ul>
+
+     </div>

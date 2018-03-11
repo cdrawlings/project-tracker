@@ -1,0 +1,91 @@
+<div class="col-md-12 top">
+    <ul class="nav nav-pills top">
+
+        <li><a href="#/Graphics_archived">Graphic Design</a></li>
+        <li ><a href="#/PowerPoint_archived">PowerPoint</a></li>
+        <li><a href="#/Naming_archived">Naming</a></li>
+        <li class="active"><a href="#/Event_archived">Event</a></li>
+
+
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                Active jobs<span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="#/Graphics_admin">Graphic Design</a></li>
+                <li><a href="#/PowerPoint_admin"> PowerPoint</a></li>
+                <li><a href="#/Naming_admin">Naming</a></li>
+                <li><a href="#/Event_admin">Events</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<div class="col-md-9 col-md-offset-1">
+    <div class="line semibold subhead""> Archived Event jobs</div></div>
+
+
+
+
+
+
+    <div class="col-md-8 col-md-offset-2">
+<ul ng-model="events" class="queue-list"">
+<li ng-repeat="item in events | filter : {'status' : 'archived'}">
+
+    <div class="eighty">
+        <div class="flt-left bold blue sixty">{{item.job}}</div>
+        <div class="flt-left"> {{item.due_date}}</div>
+
+        <div class="flt-right">
+
+            <button type="button" class="btn btn-default gray"
+                    data-toggle="modal" data-target="#dialogTestDialog{{$index}}" ng-click="Clear()">details
+            </button>
+
+
+            <button type="button" class="btn btn-default bttn-custom-blue" ng-click="eventsUnarchive($index,item)">
+                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+            </button>
+
+
+
+        </div>
+    </div>
+
+
+    <!-- Modal window -->
+
+    <div class="modal " id="dialogTestDialog{{$index}}" tabindex="-1" role="dialog"
+         aria-labelledby="executionOptionLabel"
+         aria-hidden="true">
+        <div class="modal-dialog pop">
+            <div class="modal-content modal-custom">
+                <h4><span class="bold blue"> Job  title:</span> {{item.job}}</h4>
+                <div class="modal-body">
+                    <p><span class="semibold blue">JSubmitter:</span>{{item.client}}</p>
+                       <p><span class="semibold blue">Submit date: </span> {{ item.submitted}}</p>
+                    <p><span class="semibold blue">Due date: </span>
+                        {{item.due_date }}</p>
+<div ng-hide="item.attachment == 'empty'">
+
+
+                        <p><span class="semibold blue">Attachment:</span>
+                            <button type="button" class="btn btn-default gray">
+                                <a href="{{item.attachment}}">download</a></button>
+                        </p>
+
+ </div>
+                    <p><span class="semibold blue">Brief: </span>{{item.brief}}</p>
+                    <p><span class="semibold blue">Comment: </span> {{item.comment}}</a>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</li>
+</ul>
+
+    </div>

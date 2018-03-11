@@ -1,0 +1,183 @@
+<div class="col-md-12 top">
+    <ul class="nav nav-pills top">
+        <li><a href="#/Graphics_admin">Graphic Design</a></li>
+        <li><a href="#/PowerPoint_admin"> PowerPoint</a></li>
+        <li><a href="#/Naming_admin">Naming</a></li>
+        <li class="active"><a href="#/Event_admin">Events</a></li>
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                Archived<span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="#/Graphics_archived">Graphic Design</a></li>
+                <li><a href="#/PowerPoint_archived">PowerPoint</a></li>
+                <li><a href="#/Naming_archived">Naming</a></li>
+                <li><a href="#/Event_archived">Event</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<div class="col-md-9 col-md-offset-1">
+    <div class="title bold"> Event jobs</div>
+</div>
+
+
+<div class="row">
+
+
+    <div class="col-md-8 col-md-offset-2">
+        <div class="line semibold subhead">
+            Pending jobs
+        </div>
+    </div>
+
+
+    <div class="col-md-8 col-md-offset-2">
+        <ul ui-sortable="sortableEventsOptions" ng-model="eventsPending" class="queue-list">
+            <li ng-repeat="item in eventsPending | orderBy : 'priority'">
+
+                <div class="eighty">
+                    <div class="flt-left semibold blue fifty">{{item.job}}</div>
+                    <div class="flt-left"> {{item.due_date}}</div>
+                    <div class="flt-right">
+                        <button type="button" class="btn btn-default gray"
+                                data-toggle="modal" data-target="#dialogTestDialog{{$index}}" ng-click="Clear()">details
+                        </button>
+
+                        <button type="button" class="btn btn-default bttn-custom-green"
+                                ng-click="eventsStartTodo($index, item)">
+                            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                        </button>
+
+
+                        <button type="button" class="btn btn-default bttn-custom-red"
+                                ng-click="eventsRemoveTodo($index, item)">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </button>
+
+                    </div>
+                </div>
+
+
+                <!-- Modal window -->
+
+                <div class="modal" id="dialogTestDialog{{$index}}" tabindex="-1" role="dialog"
+                     aria-labelledby="executionOptionLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog pop">
+                        <div class="modal-content modal-custom">
+                            <h4><span class="bold blue"> Job  title:</span> {{item.job}}</h4>
+                            <div class="modal-body">
+                                <p><span class="semibold blue">Job Submitter:</span> {{item.client}}</p>
+                                 <p><span class="semibold blue">Date Submitted:</span> {{item.submitted}}</p>
+                                <p><span class="semibold blue">Due date: </span> <a href="#"
+                                                                                    editable-text="item.due_date"
+                                                                                    onbeforesave="saveEventsEdit($data, item, 'due_date')">{{
+                                    item.due_date}}</a></p>
+
+                                <p><span class="semibold blue">Brief:</span> {{item.brief}}</p>
+
+                                <div ng-hide="item.attachment == 'empty'">
+
+
+                                    <p><span class="semibold blue">Attachment:</span>
+                                        <button type="button" class="btn btn-default gray">
+                                            <a href="{{item.attachment}}">download</a></button>
+                                    </p>
+
+                                </div>
+                                <p><span class="semibold blue">Comment: </span> <a href="#"
+                                                                                   editable-textarea="item.comment"
+                                                                                   onbeforesave="saveEventsEdit($data, item, 'comment')">{{item.comment}}</a>
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </li>
+        </ul>
+    </div>
+
+
+    <div class="col-md-8 col-md-offset-2">
+        <div class="line">
+            <div class="semibold subhead">Active jobs</div>
+    </div>
+
+        <ul ui-sortable="sortableEventsOptions" ng-model="eventsWorking" class="queue-list">
+        <li ng-repeat="item in eventsWorking | orderBy : 'priority'">
+
+            <div class="eighty">
+                <div class="flt-left semibold blue fifty">{{item.job}}</div>
+                <div class="flt-left"> {{item.due_date}}</div>
+
+                <div class="flt-right">
+
+                    <button type="button" class="btn btn-default gray"
+                            data-toggle="modal" data-target="#dialogTestDialog{{$index}}" ng-click="Clear()">details
+                    </button>
+
+
+                    <button type="button" class="btn btn-default bttn-custom-blue"
+                            ng-click="eventsCompleteTodo($index,item)">
+                        <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>
+                    </button>
+
+
+                    <button type="button" class="btn btn-default bttn-custom-red"
+                            ng-click="eventsRemoveTodo($index, item)">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    </button>
+
+                </div>
+            </div>
+
+
+            <!-- Modal window -->
+
+            <div class="modal " id="dialogTestDialog{{$index}}" tabindex="-1" role="dialog"
+                 aria-labelledby="executionOptionLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog pop">
+                    <div class="modal-content modal-custom">
+                        <h4><span class="bold blue"> Job  title:</span> {{item.job}}</h4>
+                        <div class="modal-body">
+                            <p><span class="semibold blue">Job Submitter:</span>{{item.client}}</p>
+                             <p><span class="semibold blue">Date Submitted:</span> {{item.submitted}}</p>
+                            <p><span class="semibold blue">Due date: </span> <a href="#" editable-text="item.due_date"
+                                                                                onbeforesave="saveEventsEdit($data, item, 'due_date')">{{
+                                item.due_date}}</a></p>
+
+                            <div ng-hide="item.attachment == 'empty'">
+
+
+                                <p><span class="semibold blue">Attachment:</span>
+                                    <button type="button" class="btn btn-default gray">
+                                        <a href="{{item.attachment}}">download</a></button>
+                                </p>
+
+                            </div>
+
+                            <p><span class="semibold blue">Brief: </span>{{item.brief}}</p>
+                            <p><span class="semibold blue">Comment: </span> <a href="#" editable-text="item.comment"
+                                                                               onbeforesave="saveEventsEdit($data, item, 'comment')">{{item.comment}}</a>
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </li>
+        </ul>
+    </div>
+
+
+    <div class="col-md-8 col-md-offset-2">
+        <div class="btn btn-default gray">
+        <a href="#/Event_archived">Archived Event Jobs</a>
+        </div>
+    </div>

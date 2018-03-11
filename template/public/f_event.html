@@ -1,0 +1,63 @@
+
+<div class="col-md-9 col-md-offset-1">
+    <div class="title bold"> Event Submission form</div>
+</div>
+
+
+
+    <div class="col-md-8 col-md-offset-2">
+
+<form ng-submit="addEvent()" target="_self">
+
+
+    <div class="form-group">
+        <label for="eventJob">New project</label>
+        <div>
+            <input type="text" required id="eventJob" class="form-control" ng-model="eventJob"
+                   placeholder="Project name">
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label for="eventClient">email</label>
+        <div>
+            <input class="form-control" required id="eventClient" ng-model="eventClient"
+                   placeholder="What is your eamil">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="eventDate">Due Date</label>
+        <div>
+            <input class="form-control" type="text" required id="eventDate" ng-model="eventDate"
+                   placeholder="what is your due date???">
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <label for="eventAttachments">Attachements</label>
+        <div>
+            <input class="form-control" type="file" placeholder="Any attaschments" ng-model="nameImg" id="nameImg">
+        </div>
+    </div>
+
+
+
+
+    <div class=" form-group">
+        <label for="eventBrief">Project details</label>
+        <div>
+                        <textarea class="form-control" type="text" ng-model="eventBrief"
+                                  placeholder="Please tell us as much as you can about your project."></textarea>
+        </div>
+    </div>
+ Submitting a job is not a gaurentee thatt we will except the assignment. your place in the queue is subject to change based on our priorities.
+<br />
+
+    <input class="btn btn-primary" type="submit" value="Submit">
+</form>
+
+    </div>
